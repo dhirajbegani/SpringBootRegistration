@@ -5,18 +5,23 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class RegistrationController {
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String welcome() {
-		return "Welcome to registration page";
+		return "welcome";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
 	}
 
 	@GetMapping(value = "/requestLogin/json", produces = MediaType.APPLICATION_JSON_VALUE)
