@@ -40,4 +40,11 @@ public class RegistrationApplicationTests {
 				String.class);
 		assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
 	}
+	
+	@Test
+	public void testHealthOfApp_shouldReturnPass() throws Exception {
+		ResponseEntity<String> response = template.withBasicAuth("user", "pa$$word").getForEntity("/actuator/health",
+				String.class);
+		assertTrue(response.getBody().contains("UP"));
+	}
 }
