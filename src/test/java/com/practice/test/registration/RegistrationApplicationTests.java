@@ -47,4 +47,12 @@ public class RegistrationApplicationTests {
 				String.class);
 		assertTrue(response.getBody().contains("UP"));
 	}
+	
+	/*@Test
+	public void testHttpClient_shouldReturnPass() throws Exception {
+		
+		HttpClientRequest.getClientRequestResult();
+		
+		assertTrue(HttpClientRequest.getClientRequestResult().contains("not provided"));
+	}*/
 }

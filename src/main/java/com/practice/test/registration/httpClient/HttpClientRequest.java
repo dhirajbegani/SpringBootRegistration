@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.http.HttpEntity;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -15,9 +16,9 @@ import org.apache.http.util.EntityUtils;
 
 public class HttpClientRequest {
 	
-	public static void main(String[] args) throws IOException {
-
-        HttpGet request = new HttpGet("http://localhost:8080/requestLogin/html");
+	public static String getClientRequestResult() throws IOException, ClientProtocolException {
+		HttpGet request = new HttpGet("http://localhost:8080/requestLogin/json");
+		String result = null;
 
         CredentialsProvider provider = new BasicCredentialsProvider();
         provider.setCredentials(
@@ -31,16 +32,13 @@ public class HttpClientRequest {
              CloseableHttpResponse response = httpClient.execute(request)) {
 
             // 401 if wrong user/password
-            System.out.println(response.getStatusLine().getStatusCode());
-
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 // return it as a String
-                String result = EntityUtils.toString(entity);
-                System.out.println(result);
+                result = EntityUtils.toString(entity);
             }
-
+            
+            return result;
         }
-
-    }
+	}
 }
